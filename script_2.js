@@ -1,5 +1,5 @@
-const getPeoplePromise = () => {
-    return fetch("https://swapi.py4e.com/api/people/")
+const getPeoplePromise = (fetchFunction = global.fetch) => {
+    return fetchFunction("https://swapi.py4e.com/api/people/")
         .then(response => response.json())
         .then(data => {
             return {
@@ -9,8 +9,8 @@ const getPeoplePromise = () => {
         });
 };
 
-const getPeople = async () => {
-    const getRequest = await fetch("https://swapi.py4e.com/api/people/");
+const getPeople = async (fetchFunction = global.fetch) => {
+    const getRequest = await fetchFunction("https://swapi.py4e.com/api/people/");
     const data = await getRequest.json();
 
     return {
